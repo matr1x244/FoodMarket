@@ -1,4 +1,4 @@
-package com.example.foodmarket.ui.main.rv_foods
+package com.example.foodmarket.ui.main.rv_category_foods
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,25 +11,29 @@ class AdapterFoodsRV : RecyclerView.Adapter<FoodsViewHolder>() {
 
     private var foodsList: MutableList<FoodsCategory> = mutableListOf()
 
+    private lateinit var clickListener: OnItemClickListener
+
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(newListFoods: List<FoodsCategory>) {
+    fun setData(newCategoryFoods: List<FoodsCategory>) {
         foodsList.clear()
-        foodsList.addAll(newListFoods)
+        foodsList.addAll(newCategoryFoods)
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodsViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.rv_item_list_foods, parent, false)
-        return FoodsViewHolder(view)
+            .inflate(R.layout.rv_item_category_foods, parent, false)
+        return FoodsViewHolder(view, clickListener)
     }
 
     override fun onBindViewHolder(holder: FoodsViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(foodsList[position])
     }
 
-    private fun getItem(position: Int): FoodsCategory = foodsList[position]
-
-    override fun getItemCount() = foodsList.size
+    override fun getItemCount(): Int {
+        return foodsList.size
+    }
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        clickListener = listener
+    }
 }
