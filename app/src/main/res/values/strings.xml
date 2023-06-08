@@ -4,4 +4,6 @@
     <string name="menu_search_item">Поиск</string>
     <string name="menu_basket_item">Корзина</string>
     <string name="menu_profile_item">Аккаунт</string>
+    <string name="city_geo_name">Наименование города</string>
+    <string name="text_date">Дата</string>
 </resources>
