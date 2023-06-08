@@ -2,8 +2,31 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FoodMarket" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Transparent status bar -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
     <style name="Theme.FoodMarket" parent="Base.Theme.FoodMarket" />
+
+    <!--  BottomNav Style Custom  -->
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/white</item>
+    </style>
+
+    <style name="bottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/ActiveText</item>
+        <item name="itemTextAppearanceInactive">@style/InactiveText</item>
+    </style>
+
+    <style name="ActiveText">
+        <item name="android:textColor">#3364E0</item>
+    </style>
+
+    <style name="InactiveText">
+        <item name="android:textColor">#A5A9B2</item>
+    </style>
 </resources>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FoodMarket</string>
+    <string name="menu_foods_item">Главная</string>
+    <string name="menu_search_item">Поиск</string>
+    <string name="menu_basket_item">Корзина</string>
+    <string name="menu_profile_item">Аккаунт</string>
 </resources>
