@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodmarket.R
-import com.example.foodmarket.domain.data.FoodsCategory
+import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 
 class AdapterFoodsRV : RecyclerView.Adapter<FoodsViewHolder>() {
 

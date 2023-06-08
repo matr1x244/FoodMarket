@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodmarket.databinding.RvItemListFoodsBinding
-import com.example.foodmarket.domain.data.FoodsCategory
+import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 
 class FoodsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

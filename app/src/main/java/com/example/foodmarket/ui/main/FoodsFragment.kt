@@ -71,7 +71,7 @@ class FoodsFragment : Fragment() {
     }
 
     private fun loadNewFoodsList() {
-        viewModel.reposListFoods.observe(viewLifecycleOwner) {
+        viewModel.reposListCategoryFoods.observe(viewLifecycleOwner) {
             adapterFoods.setData(it.сategories)
         }
     }
