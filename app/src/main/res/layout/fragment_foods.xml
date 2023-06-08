@@ -59,5 +59,28 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_view_list_foods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="60dp"
+        app:layout_constraintEnd_toEndOf="@+id/box_appbar"
+        app:layout_constraintStart_toStartOf="@+id/box_appbar"
+        app:layout_constraintTop_toBottomOf="@+id/box_appbar" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_foods_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/box_appbar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
