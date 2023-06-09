@@ -1,15 +1,18 @@
-package com.example.foodmarket.ui.main.categoryWindow
+package com.example.foodmarket.ui.main.listWindow
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentFoodsListBinding
-import com.example.foodmarket.ui.main.categoryWindow.rv_list_foods.AdapterFoodsListRV
+import com.example.foodmarket.ui.main.listWindow.rv_list_foods.AdapterFoodsListRV
+import com.example.foodmarket.ui.main.mainWindow.FoodsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
@@ -36,14 +39,47 @@ class ListFoodsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        appBar()
+        chipMenu()
         viewsShowListFoods()
         loadNewFoods()
+    }
+
+    private fun appBar() {
+        binding.ivIconBackMenu.setOnClickListener {
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, FoodsFragment.newInstance())
+                .commit()
+        }
+    }
+
+    private fun chipMenu() {
+        binding.chipMenu.setOnCheckedChangeListener { _, selectedId ->
+            when (selectedId) {
+                R.id.cp_all_menu -> {
+                    Toast.makeText(requireActivity(), "cp_all_menu", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.cp_salad -> {
+                    Toast.makeText(requireActivity(), "cp_salad", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.cp_rice -> {
+                    Toast.makeText(requireActivity(), "cp_rice", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.cp_fish -> {
+                    Toast.makeText(requireActivity(), "cp_fish", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun viewsShowListFoods() {
         viewModel.onShowListFoods()
         binding.rvViewListFoods.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            GridLayoutManager(requireActivity(), 3)
         binding.rvViewListFoods.adapter = adapterListFoods
         progressBar()
     }

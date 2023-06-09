@@ -1,4 +1,4 @@
-package com.example.foodmarket.ui.main.rv_category_foods
+package com.example.foodmarket.ui.main.mainWindow.rv_category_foods
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

@@ -1,4 +1,4 @@
-package com.example.foodmarket.ui.main.rv_category_foods
+package com.example.foodmarket.ui.main.mainWindow.rv_category_foods
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodmarket.R
 import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 
-class AdapterFoodsRV : RecyclerView.Adapter<FoodsViewHolder>() {
+class AdapterCategoryFoodsRV : RecyclerView.Adapter<FoodsViewHolder>() {
 
     private var foodsList: MutableList<FoodsCategory> = mutableListOf()
 

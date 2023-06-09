@@ -8,9 +8,20 @@
         <!-- Transparent status bar -->
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
+
+        <item name="chipStyle">@style/Custom.Chips</item>
     </style>
 
     <style name="Theme.FoodMarket" parent="Base.Theme.FoodMarket" />
+
+    <!-- Custom Style Chips-->
+    <style name="Custom.Chips" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/custom_choice_chip_background_color</item>
+        <item name="android:textColor">@color/custom_choice_chip_text_color</item>
+        <item name="android:textAlignment">center</item>
+        <item name="chipCornerRadius">10dp</item>
+        <item name="android:layout_width">94dp</item>
+    </style>
 
     <!--  BottomNav Style Custom  -->
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">

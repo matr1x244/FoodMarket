@@ -1,7 +1,5 @@
-package com.example.foodmarket.ui.main
+package com.example.foodmarket.ui.main.mainWindow
 
-import android.graphics.Color
-import android.media.effect.EffectFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentFoodsBinding
-import com.example.foodmarket.ui.main.categoryWindow.ListFoodsFragment
-import com.example.foodmarket.ui.main.rv_category_foods.AdapterFoodsRV
-import com.example.foodmarket.ui.main.rv_category_foods.FoodsViewHolder
-import com.example.foodmarket.ui.main.rv_category_foods.OnItemClickListener
+import com.example.foodmarket.ui.main.listWindow.ListFoodsFragment
+import com.example.foodmarket.ui.main.mainWindow.rv_category_foods.AdapterCategoryFoodsRV
+import com.example.foodmarket.ui.main.mainWindow.rv_category_foods.OnItemClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 import java.text.SimpleDateFormat
@@ -33,7 +30,7 @@ class FoodsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: FoodsViewModel by viewModel(named("foods_category_view_model"))
-    private val adapterFoods = AdapterFoodsRV()
+    private val adapterFoods = AdapterCategoryFoodsRV()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
