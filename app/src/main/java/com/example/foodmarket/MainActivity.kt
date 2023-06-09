@@ -3,7 +3,8 @@ package com.example.foodmarket
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.foodmarket.ui.main.FoodsFragment
+import com.example.foodmarket.ui.main.listWindow.ListFoodsFragment
+import com.example.foodmarket.ui.main.mainWindow.FoodsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.foods_menu -> {
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.main_fragment_container, FoodsFragment.newInstance())
+                        .replace(R.id.main_fragment_container, ListFoodsFragment.newInstance())
                         .addToBackStack(null)
                         .commit()
                 }

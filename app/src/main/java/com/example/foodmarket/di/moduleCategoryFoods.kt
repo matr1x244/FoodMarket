@@ -3,7 +3,7 @@ package com.example.foodmarket.di
 import com.example.foodmarket.date.web.FoodsAPI
 import com.example.foodmarket.date.web.RetrofitRequestImpl
 import com.example.foodmarket.domain.data.RepositoryCategoryFoods
-import com.example.foodmarket.ui.main.FoodsViewModel
+import com.example.foodmarket.ui.main.mainWindow.FoodsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

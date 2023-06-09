@@ -1,4 +1,4 @@
-package com.example.foodmarket.ui.main.categoryWindow.rv_list_foods
+package com.example.foodmarket.ui.main.listWindow.rv_list_foods
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -20,7 +20,7 @@ class AdapterFoodsListRV : RecyclerView.Adapter<FoodsListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodsListViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.rv_item_category_foods, parent, false)
+            .inflate(R.layout.rv_item_list_foods, parent, false)
         return FoodsListViewHolder(view)
     }
 

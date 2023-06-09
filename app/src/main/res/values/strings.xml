@@ -7,4 +7,9 @@
     <string name="city_geo_name">Наименование города</string>
     <string name="text_date">Дата</string>
     <string name="name_food">Наименование еды</string>
+    <string name="chiana_kitchen">Азиатская кухня</string>
+    <string name="cp_all_menu">Всё меню</string>
+    <string name="salad">Салаты</string>
+    <string name="cp_rice">С рисом</string>
+    <string name="cp_fish">С рыбой</string>
 </resources>
