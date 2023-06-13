@@ -8,11 +8,9 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentFoodsBinding
-import com.example.foodmarket.ui.main.listWindow.ListFoodsFragment
+import com.example.foodmarket.ui.main.ControllerClickersRV
 import com.example.foodmarket.ui.main.mainWindow.rv_category_foods.AdapterCategoryFoodsRV
-import com.example.foodmarket.ui.main.mainWindow.rv_category_foods.OnItemClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 import java.text.SimpleDateFormat
@@ -30,7 +28,10 @@ class FoodsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: FoodsViewModel by viewModel(named("foods_category_view_model"))
-    private val adapterFoods = AdapterCategoryFoodsRV()
+    private val adapterFoods = AdapterCategoryFoodsRV() {
+        controller.openListFragment(it)
+    }
+    private val controller by lazy { requireActivity() as ControllerClickersRV }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +46,7 @@ class FoodsFragment : Fragment() {
 
         defaultData()
         viewShowCategoryFoods()
+
     }
 
     private fun defaultData() {
@@ -56,6 +58,7 @@ class FoodsFragment : Fragment() {
             Toast.makeText(requireActivity(), "Сменить аватар", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun viewShowCategoryFoods() {
         viewModel.onShowCategory()
         viewModel.reposListCategoryFoods.observe(viewLifecycleOwner) {
@@ -63,20 +66,6 @@ class FoodsFragment : Fragment() {
         }
         binding.rvViewCategoryFoods.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-
-        adapterFoods.setOnItemClickListener(object : OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                when(position){
-                    1 -> {
-                        parentFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.main_fragment_container, ListFoodsFragment.newInstance())
-                            .addToBackStack(null)
-                            .commit()
-                    }
-                }
-            }
-        })
         binding.rvViewCategoryFoods.adapter = adapterFoods
         progressBar()
     }

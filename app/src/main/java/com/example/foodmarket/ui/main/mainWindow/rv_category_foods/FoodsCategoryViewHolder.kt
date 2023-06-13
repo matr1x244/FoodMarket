@@ -5,28 +5,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodmarket.databinding.RvItemCategoryFoodsBinding
 import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
+import com.example.foodmarket.domain.data.listFoods.ListFoods
 
-class FoodsViewHolder(itemView: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
+class FoodsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val binding = RvItemCategoryFoodsBinding.bind(itemView)
 
-    init {
-        itemView.setOnClickListener {
-            listener.onItemClick(1)
-        }
-    }
-
-    fun bind(foods: FoodsCategory) {
+    fun bind(foods: FoodsCategory, listener: FoodsCategory.() -> Unit) {
         Glide.with(binding.ivBackgroundFoods)
             .load(foods.image_url)
             .centerCrop()
             .into(binding.ivBackgroundFoods)
 
         binding.tvNameFoods.text = foods.name
+        binding.root.setOnClickListener {
+            listener.invoke(foods)
+        }
     }
 
-}
-
-interface OnItemClickListener {
-    fun onItemClick(position: Int)
 }

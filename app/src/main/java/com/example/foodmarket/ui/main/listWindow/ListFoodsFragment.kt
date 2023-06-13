@@ -11,22 +11,33 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentFoodsListBinding
+import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 import com.example.foodmarket.ui.main.listWindow.rv_list_foods.AdapterFoodsListRV
+import com.example.foodmarket.ui.main.ControllerClickersRV
 import com.example.foodmarket.ui.main.mainWindow.FoodsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
+
 class ListFoodsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ListFoodsFragment()
+        private const val ITEM_ID_CATEGORY = "ITEM_ID_CATEGORY"
+        fun newInstance(item: FoodsCategory?) = ListFoodsFragment().apply {
+            arguments = Bundle()
+            arguments?.putParcelable(ITEM_ID_CATEGORY, item)
+        }
     }
 
     private var _binding: FragmentFoodsListBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: FoodsListViewModel by viewModel(named("foods_list_view_model"))
-    private val adapterListFoods = AdapterFoodsListRV()
+    private val adapterListFoods = AdapterFoodsListRV() {
+        controller.openDetailsFragment(it)
+    }
+    private val controller by lazy { requireActivity() as ControllerClickersRV }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +57,10 @@ class ListFoodsFragment : Fragment() {
     }
 
     private fun appBar() {
+        val args = this.arguments
+        val inputData = args?.getString("KEY_NAME")
+        binding.tvNameBoxBarFoods.text = inputData.toString()
+
         binding.ivIconBackMenu.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
@@ -77,11 +92,18 @@ class ListFoodsFragment : Fragment() {
     }
 
     private fun viewsShowListFoods() {
+        val nameCategory = nameCategory()
+        binding.tvNameBoxBarFoods.text = nameCategory?.name
         viewModel.onShowListFoods()
         binding.rvViewListFoods.layoutManager =
             GridLayoutManager(requireActivity(), 3)
+        binding.rvViewListFoods.isSaveEnabled = true
         binding.rvViewListFoods.adapter = adapterListFoods
         progressBar()
+    }
+
+    private fun nameCategory(): FoodsCategory? {
+        return arguments?.getParcelable(ListFoodsFragment.ITEM_ID_CATEGORY)
     }
 
     private fun progressBar() {
@@ -103,4 +125,5 @@ class ListFoodsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

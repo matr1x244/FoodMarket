@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.example.foodmarket.di.moduleCategoryFoods
+import com.example.foodmarket.di.moduleDetailsFoods
 import com.example.foodmarket.di.moduleListFoods
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,7 +18,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(moduleCategoryFoods, moduleListFoods)
+            modules(moduleCategoryFoods, moduleListFoods, moduleDetailsFoods)
         }
     }
 }
