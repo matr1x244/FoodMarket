@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodmarket.R
-import com.example.foodmarket.domain.data.listFoods.Dishe
+import com.example.foodmarket.domain.data.listFoods.ListFoods
 
-class AdapterFoodsListRV : RecyclerView.Adapter<FoodsListViewHolder>() {
+class AdapterFoodsListRV(private val itemClick: (ListFoods.Dishe) -> Unit) : RecyclerView.Adapter<FoodsListViewHolder>() {
 
-    private var foodsList: MutableList<Dishe> = mutableListOf()
+    private var foodsList = mutableListOf<ListFoods.Dishe>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(newListFoods: List<Dishe>) {
+    fun setData(newListFoods: List<ListFoods.Dishe>) {
         foodsList.clear()
         foodsList.addAll(newListFoods)
         notifyDataSetChanged()
@@ -25,7 +25,11 @@ class AdapterFoodsListRV : RecyclerView.Adapter<FoodsListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FoodsListViewHolder, position: Int) {
-        holder.bind(foodsList[position])
+        holder.bind(getItem(position), itemClick)
+    }
+
+    private fun getItem(position: Int): ListFoods.Dishe {
+        return foodsList[position]
     }
 
     override fun getItemCount(): Int {
