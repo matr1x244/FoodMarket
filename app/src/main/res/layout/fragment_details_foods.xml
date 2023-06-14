@@ -1,12 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#66000000">
 
-    <TextView
-        android:id="@+id/settext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello foods"/>
+    <View
+        android:id="@+id/hiding_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_background_main_basket"
+        android:layout_width="match_parent"
+        android:layout_height="446dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_background_image"
+                android:layout_width="match_parent"
+                android:layout_height="232dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#F8F7F5"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_like"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="56dp"
+                    android:background="@drawable/button_style_details_like_exit"
+                    android:src="@drawable/ic_like" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_exit"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/button_style_details_like_exit"
+                    android:src="@drawable/ic_exit" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_background_foods"
+                    android:layout_width="198dp"
+                    android:layout_height="204dp"
+                    android:layout_gravity="center" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/cv_background_image"
+                app:layout_constraintTop_toBottomOf="@+id/cv_background_image" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_price_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_name_food"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_food" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_weight_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="#66000000"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_price_food"
+                app:layout_constraintTop_toTopOf="@+id/tv_price_food" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_descriptions_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="#A6000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price_food" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_add_basket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_style_add_basket"
+                android:gravity="center"
+                android:shadowColor="@color/white"
+                android:text="@string/add_basket"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_descriptions_food"
+                app:layout_constraintStart_toStartOf="@+id/tv_descriptions_food" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

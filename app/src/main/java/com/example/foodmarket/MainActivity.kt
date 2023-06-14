@@ -5,9 +5,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 import com.example.foodmarket.domain.data.listFoods.ListFoods
+import com.example.foodmarket.ui.basket.BasketFoodsFragment
+import com.example.foodmarket.ui.main.ControllerClickersRV
 import com.example.foodmarket.ui.main.listWindow.ListFoodsFragment
 import com.example.foodmarket.ui.main.listWindow.detail.DetailsFoodsFragment
-import com.example.foodmarket.ui.main.ControllerClickersRV
 import com.example.foodmarket.ui.main.mainWindow.FoodsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -41,7 +42,11 @@ class MainActivity : AppCompatActivity(), ControllerClickersRV {
                 }
 
                 R.id.basket_menu -> {
-                    Toast.makeText(this, "basket_menu", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.main_fragment_container, BasketFoodsFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit()
                 }
 
                 R.id.profile_menu -> {
@@ -56,7 +61,7 @@ class MainActivity : AppCompatActivity(), ControllerClickersRV {
     override fun openDetailsFragment(item: ListFoods.Dishe) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.main_fragment_container, DetailsFoodsFragment.newInstance(item))
+            .add(R.id.main_fragment_container, DetailsFoodsFragment.newInstance(item))
             .addToBackStack(null)
             .commit()
     }

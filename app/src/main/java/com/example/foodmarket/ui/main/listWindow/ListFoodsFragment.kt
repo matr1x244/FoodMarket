@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentFoodsListBinding
 import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
-import com.example.foodmarket.ui.main.listWindow.rv_list_foods.AdapterFoodsListRV
 import com.example.foodmarket.ui.main.ControllerClickersRV
+import com.example.foodmarket.ui.main.listWindow.rv_list_foods.AdapterFoodsListRV
 import com.example.foodmarket.ui.main.mainWindow.FoodsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
