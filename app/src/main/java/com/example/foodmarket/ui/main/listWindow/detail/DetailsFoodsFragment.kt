@@ -43,7 +43,6 @@ class DetailsFoodsFragment() : Fragment() {
 
         detailView()
         buttonClicks()
-//        isBlocked()
     }
 
     private fun detailView() {
@@ -51,7 +50,6 @@ class DetailsFoodsFragment() : Fragment() {
         disableBackground(true)
         val weightFood = detail?.weight.toString()
         val spannableWeightFood = SpannableStringBuilder(weightFood)
-
         val descriptionsFood = detail?.description.toString()
         if (descriptionsFood.lastIndex > 170) {
             val endText = descriptionsFood.substring(0..170) + " ..."
@@ -89,13 +87,9 @@ class DetailsFoodsFragment() : Fragment() {
     }
 
     private fun disableBackground(isBlock: Boolean) {
-        if (isBlock) {
+        if(isBlock){
             binding.hidingScreen.visibility = View.VISIBLE
-        } else {
-            binding.hidingScreen.visibility = View.INVISIBLE
-        }
-        binding.hidingScreen.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+            binding.hidingScreen.isClickable = true
         }
     }
 
