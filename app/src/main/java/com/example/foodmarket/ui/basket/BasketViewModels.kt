@@ -8,12 +8,13 @@ import com.example.foodmarket.date.local.BasketEntity
 import com.example.foodmarket.date.local.RepositoryBasket
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
 class BasketViewModels(private val repository: RepositoryBasket) : ViewModel() {
 
-    private val _basket = MutableLiveData<List<BasketEntity>>()
-    val basket: LiveData<List<BasketEntity>> = _basket
+    private val _basket = MutableSharedFlow<List<BasketEntity>>()
+    val basket: MutableSharedFlow<List<BasketEntity>> = _basket
 
     fun onSaveBasket(
         name: String,
@@ -35,7 +36,7 @@ class BasketViewModels(private val repository: RepositoryBasket) : ViewModel() {
 
     fun getBasket() {
         viewModelScope.launch(Dispatchers.IO) {
-            _basket.postValue(repository.getBasket())
+            _basket.emit(repository.getBasket())
         }
     }
 

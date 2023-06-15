@@ -1,5 +1,7 @@
 package com.example.foodmarket.date.local
 
+import com.example.foodmarket.domain.data.listFoods.ListFoods
+
 class RepositoryBasketImpl(private val database: DataBaseFoods) : RepositoryBasket {
 
     override suspend fun saveBasket(

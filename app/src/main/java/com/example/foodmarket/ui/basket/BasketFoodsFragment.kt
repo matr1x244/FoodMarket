@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodmarket.databinding.FragmentBasketBinding
 import com.example.foodmarket.ui.basket.rv_basket_foods.AdapterBasketFoodsRV
@@ -22,7 +23,7 @@ class BasketFoodsFragment : Fragment() {
 
     private val viewModel: BasketViewModels by viewModel(named("basket_view_model"))
     private val adapterBasket = AdapterBasketFoodsRV {
-        viewModel.getBasket()
+
     }
 
     override fun onCreateView(
@@ -36,16 +37,38 @@ class BasketFoodsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        foods()
+        foodsView()
+        payBasket()
     }
 
-    private fun foods() {
+    private fun foodsView() {
         viewModel.getBasket()
-        viewModel.basket.observe(viewLifecycleOwner) {
-            adapterBasket.setData(it)
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.basket.collect {
+                adapterBasket.setData(it)
+            }
         }
         binding.rvViewBasketFoods.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvViewBasketFoods.adapter = adapterBasket
+        adapterBasket.notifyDataSetChanged()
+    }
+
+    private fun payBasket() {
+        binding.btnPayBasket.setOnClickListener {
+            viewModel.onDeleteBasket()
+            viewModel.getBasket()
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                viewModel.basket.collect{
+                    adapterBasket.setData(it)
+                }
+                adapterBasket.notifyDataSetChanged()
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
