@@ -7,8 +7,8 @@ import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 import com.example.foodmarket.domain.data.listFoods.ListFoods
 import com.example.foodmarket.ui.basket.BasketFoodsFragment
 import com.example.foodmarket.ui.main.ControllerClickersRV
+import com.example.foodmarket.ui.main.detailWindow.DetailsFoodsFragment
 import com.example.foodmarket.ui.main.listWindow.ListFoodsFragment
-import com.example.foodmarket.ui.main.listWindow.detail.DetailsFoodsFragment
 import com.example.foodmarket.ui.main.mainWindow.FoodsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

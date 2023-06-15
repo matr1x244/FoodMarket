@@ -1,4 +1,4 @@
-package com.example.foodmarket.ui.main.listWindow.detail
+package com.example.foodmarket.ui.main.detailWindow
 
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -11,6 +11,7 @@ import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentDetailsFoodsBinding
 import com.example.foodmarket.domain.data.listFoods.ListFoods
 import com.example.foodmarket.ui.basket.BasketFoodsFragment
+import com.example.foodmarket.ui.basket.BasketViewModels
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
@@ -28,7 +29,10 @@ class DetailsFoodsFragment() : Fragment() {
     private var _binding: FragmentDetailsFoodsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: DetailsFoodsViewModel by viewModel(named("foods_detail_view_model"))
+//    private val viewModel: DetailsFoodsViewModel by viewModel(named("foods_detail_view_model"))
+
+    private val viewModel: BasketViewModels by viewModel(named("basket_view_model"))
+    private val detail = detailArguments()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,10 +79,17 @@ class DetailsFoodsFragment() : Fragment() {
     }
 
     private fun buttonClicks() {
+        val args = detailArguments()
         binding.btnExit.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
         binding.btnAddBasket.setOnClickListener {
+            viewModel.onSaveBasket(
+                binding.tvNameFood.text.toString(),
+                args?.image_url.toString(),
+                args?.price.toString(),
+                args?.weight.toString()
+            )
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, BasketFoodsFragment.newInstance())
@@ -87,7 +98,7 @@ class DetailsFoodsFragment() : Fragment() {
     }
 
     private fun disableBackground(isBlock: Boolean) {
-        if(isBlock){
+        if (isBlock) {
             binding.hidingScreen.visibility = View.VISIBLE
             binding.hidingScreen.isClickable = true
         }

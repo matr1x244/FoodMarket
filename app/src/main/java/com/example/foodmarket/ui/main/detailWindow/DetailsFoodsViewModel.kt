@@ -1,4 +1,4 @@
-package com.example.foodmarket.ui.main.listWindow.detail
+package com.example.foodmarket.ui.main.detailWindow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
