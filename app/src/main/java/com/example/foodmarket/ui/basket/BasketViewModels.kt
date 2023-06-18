@@ -25,15 +25,15 @@ class BasketViewModels(private val repository: RepositoryBasket) : ViewModel() {
         }
     }
 
-    fun onUpdateBasket(sum: Int) {
+    fun onUpdateBasket(sum: Int?) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateBasket(sum)
         }
     }
 
-    fun onDeleteBasket() {
+    fun onDeleteBasketAll() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteBasket()
+            repository.deleteBasketAll()
         }
     }
 

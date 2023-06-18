@@ -1,7 +1,5 @@
 package com.example.foodmarket.date.local
 
-import java.util.Arrays
-
 class RepositoryBasketImpl(private val database: DataBaseFoods) : RepositoryBasket {
 
     override suspend fun saveBasket(
@@ -21,11 +19,11 @@ class RepositoryBasketImpl(private val database: DataBaseFoods) : RepositoryBask
         )
     }
 
-    override suspend fun updateBasket(sum: Int) {
+    override suspend fun updateBasket(sum: Int?) {
        database.foodsDao().updateSumByBasket(sum)
     }
 
-    override suspend fun deleteBasket() {
+    override suspend fun deleteBasketAll() {
         return database.foodsDao().deleteAll()
     }
 

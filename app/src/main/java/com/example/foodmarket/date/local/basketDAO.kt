@@ -20,7 +20,7 @@ interface basketDAO {
     fun insert(entity: BasketEntity)
 
     @Query("UPDATE basket_table SET sum = :newSum")
-    fun updateSumByBasket(newSum: Int): Int
+    fun updateSumByBasket(newSum: Int?): Int
 
     @Update
     fun update(entity: BasketEntity)

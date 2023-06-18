@@ -3,10 +3,8 @@ package com.example.foodmarket
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 import com.example.foodmarket.domain.data.listFoods.ListFoods
 import com.example.foodmarket.ui.basket.BasketFoodsFragment
