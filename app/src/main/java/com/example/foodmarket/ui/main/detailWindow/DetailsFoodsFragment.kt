@@ -5,12 +5,11 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentDetailsFoodsBinding
 import com.example.foodmarket.domain.data.listFoods.ListFoods
-import com.example.foodmarket.ui.basket.BasketFoodsFragment
 import com.example.foodmarket.ui.basket.BasketViewModels
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
@@ -90,10 +89,8 @@ class DetailsFoodsFragment() : Fragment() {
                 args?.price.toString(),
                 args?.weight.toString()
             )
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, BasketFoodsFragment.newInstance())
-                .commit()
+            Toast.makeText(requireActivity(), "Добавлено  в корзину", Toast.LENGTH_SHORT).show()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 

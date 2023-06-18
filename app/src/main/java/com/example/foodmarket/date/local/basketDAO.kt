@@ -19,6 +19,9 @@ interface basketDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(entity: BasketEntity)
 
+    @Query("UPDATE basket_table SET sum = :newSum")
+    fun updateSumByBasket(newSum: Int): Int
+
     @Update
     fun update(entity: BasketEntity)
 

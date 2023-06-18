@@ -9,5 +9,6 @@ data class BasketEntity(
     val image_url: String,
     var name: String?,
     val price: String?,
-    val weight: String?
+    val weight: String?,
+    val sum: Int?
 )

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodmarket.databinding.FragmentBasketBinding
 import com.example.foodmarket.ui.basket.rv_basket_foods.AdapterBasketFoodsRV
@@ -23,8 +24,9 @@ class BasketFoodsFragment : Fragment() {
 
     private val viewModel: BasketViewModels by viewModel(named("basket_view_model"))
     private val adapterBasket = AdapterBasketFoodsRV {
-
+        viewModel.getAllBasket()
     }
+    private var sum = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,11 +40,19 @@ class BasketFoodsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         foodsView()
-        payBasket()
+//        payBasket()
+        binding.btnPayBasket.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                viewModel.onUpdateBasket(sum++)
+                viewModel.getAllBasket()
+                adapterBasket.notifyDataSetChanged()
+            }
+        }
     }
 
+
     private fun foodsView() {
-        viewModel.getBasket()
+        viewModel.getAllBasket()
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.basket.collect {
                 adapterBasket.setData(it)
@@ -51,18 +61,17 @@ class BasketFoodsFragment : Fragment() {
         binding.rvViewBasketFoods.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvViewBasketFoods.adapter = adapterBasket
-        adapterBasket.notifyDataSetChanged()
     }
 
     private fun payBasket() {
         binding.btnPayBasket.setOnClickListener {
             viewModel.onDeleteBasket()
-            viewModel.getBasket()
+            viewModel.getAllBasket()
+            adapterBasket.notifyDataSetChanged()
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 viewModel.basket.collect{
                     adapterBasket.setData(it)
                 }
-                adapterBasket.notifyDataSetChanged()
             }
         }
     }

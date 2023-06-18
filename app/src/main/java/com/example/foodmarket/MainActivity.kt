@@ -3,6 +3,10 @@ package com.example.foodmarket
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.foodmarket.domain.data.categoryFoods.FoodsCategory
 import com.example.foodmarket.domain.data.listFoods.ListFoods
 import com.example.foodmarket.ui.basket.BasketFoodsFragment
@@ -11,6 +15,9 @@ import com.example.foodmarket.ui.main.detailWindow.DetailsFoodsFragment
 import com.example.foodmarket.ui.main.listWindow.ListFoodsFragment
 import com.example.foodmarket.ui.main.mainWindow.FoodsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MainActivity : AppCompatActivity(), ControllerClickersRV {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +29,21 @@ class MainActivity : AppCompatActivity(), ControllerClickersRV {
                 .commitNow()
         }
 
+        appBar()
         bottomNavMenu()
+    }
+
+    private fun appBar() {
+        val tvDate = findViewById<AppCompatTextView>(R.id.tv_date)
+        val tvGeoCityName = findViewById<AppCompatTextView>(R.id.tv_geo_city_name)
+        val ivProfilePhoto = findViewById<AppCompatImageView>(R.id.iv_profile_photo)
+        val date =
+            SimpleDateFormat("dd MMMM, yyyy", Locale.ENGLISH).format(Calendar.getInstance().time)
+        tvDate.text = date
+        tvGeoCityName.text = "Санкт-Петербург"
+        ivProfilePhoto.setOnClickListener {
+            Toast.makeText(this, "Сменить аватар", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun bottomNavMenu() {
@@ -73,4 +94,5 @@ class MainActivity : AppCompatActivity(), ControllerClickersRV {
             .addToBackStack(null)
             .commit()
     }
+
 }

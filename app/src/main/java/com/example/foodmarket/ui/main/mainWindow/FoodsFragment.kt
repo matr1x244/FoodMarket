@@ -44,19 +44,7 @@ class FoodsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        defaultData()
         viewShowCategoryFoods()
-
-    }
-
-    private fun defaultData() {
-        val date =
-            SimpleDateFormat("dd MMMM, yyyy", Locale.ENGLISH).format(Calendar.getInstance().time)
-        binding.tvDate.text = date
-        binding.tvGeoCityName.text = "Санкт-Петербург"
-        binding.ivProfilePhoto.setOnClickListener {
-            Toast.makeText(requireActivity(), "Сменить аватар", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun viewShowCategoryFoods() {

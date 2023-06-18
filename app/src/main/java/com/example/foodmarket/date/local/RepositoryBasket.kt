@@ -6,5 +6,7 @@ interface RepositoryBasket {
 
     suspend fun deleteBasket()
 
-    suspend fun getBasket(): List<BasketEntity>
+    suspend fun updateBasket(sum: Int)
+
+    suspend fun getAllBasket(): List<BasketEntity>
 }

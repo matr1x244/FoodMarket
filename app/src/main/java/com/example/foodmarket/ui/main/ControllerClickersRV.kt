@@ -8,4 +8,5 @@ interface ControllerClickersRV {
     fun openDetailsFragment(item: ListFoods.Dishe)
 
     fun openListFragment(item: FoodsCategory)
+
 }

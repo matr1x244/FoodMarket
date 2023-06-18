@@ -1,6 +1,6 @@
 package com.example.foodmarket.date.local
 
-import com.example.foodmarket.domain.data.listFoods.ListFoods
+import java.util.Arrays
 
 class RepositoryBasketImpl(private val database: DataBaseFoods) : RepositoryBasket {
 
@@ -8,23 +8,28 @@ class RepositoryBasketImpl(private val database: DataBaseFoods) : RepositoryBask
         name: String,
         image_url: String,
         price: String,
-        weight: String
+        weight: String,
     ) {
         database.foodsDao().insert(
             BasketEntity(
                 name = name,
                 image_url = image_url,
                 price = price,
-                weight = weight
+                weight = weight,
+                sum = 1
             )
         )
+    }
+
+    override suspend fun updateBasket(sum: Int) {
+       database.foodsDao().updateSumByBasket(sum)
     }
 
     override suspend fun deleteBasket() {
         return database.foodsDao().deleteAll()
     }
 
-    override suspend fun getBasket(): List<BasketEntity> {
+    override suspend fun getAllBasket(): List<BasketEntity> {
         return database.foodsDao().allBasket()
     }
 }

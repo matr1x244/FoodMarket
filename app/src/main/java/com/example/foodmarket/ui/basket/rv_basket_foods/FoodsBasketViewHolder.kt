@@ -9,14 +9,15 @@ import com.example.foodmarket.date.local.BasketEntity
 class FoodsBasketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val binding = RvItemBasketFoodsBinding.bind(itemView)
-
     fun bind(foods: BasketEntity, listener: BasketEntity.() -> Unit) {
-        Glide.with(binding.ivRoom)
+        Glide.with(binding.ivFood)
             .load(foods.image_url)
-            .centerCrop()
-            .into(binding.ivRoom)
+            .centerInside()
+            .into(binding.ivFood)
 
-        binding.tvRoom.text = foods.name.toString()
+        binding.tvNameFood.text = foods.name.toString()
+        binding.tvPrice.text = foods.price + " ₽" + " • " + foods.weight + "г"
+        binding.tvSum.text = foods.sum.toString()
         binding.root.setOnClickListener {
             listener.invoke(foods)
         }

@@ -1,7 +1,5 @@
 package com.example.foodmarket.ui.basket
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodmarket.date.local.BasketEntity
@@ -27,6 +25,11 @@ class BasketViewModels(private val repository: RepositoryBasket) : ViewModel() {
         }
     }
 
+    fun onUpdateBasket(sum: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateBasket(sum)
+        }
+    }
 
     fun onDeleteBasket() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -34,9 +37,9 @@ class BasketViewModels(private val repository: RepositoryBasket) : ViewModel() {
         }
     }
 
-    fun getBasket() {
+    fun getAllBasket() {
         viewModelScope.launch(Dispatchers.IO) {
-            _basket.emit(repository.getBasket())
+            _basket.emit(repository.getAllBasket())
         }
     }
 

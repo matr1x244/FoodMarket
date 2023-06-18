@@ -19,7 +19,7 @@ abstract class DataBaseFoods: RoomDatabase() {
 
 object DataBaseFoodsBuilder {
     private var instance: DataBaseFoods? = null
-    const val DB_NAME = "add_basket_new.db"
+    const val DB_NAME = "add_basket_sum.db"
 
     fun getInstance(context: Context): DataBaseFoods {
         if (instance == null) {
